@@ -7,16 +7,18 @@ class QuoteGarden::Apicalls
     HTTParty.get('https://quote-garden.herokuapp.com/api/v2/quotes/random')
   end
 
-  def self.search_by_word
-   author = HTTParty.get('https://quote-garden.herokuapp.com/api/v2/authors/Bertrand')
-   author.parsed_response
-   sleep(1)
-     puts author['quotes'].first['quoteText']
-  end
+#   def self.search_by_word
+#    author = HTTParty.get('https://quote-garden.herokuapp.com/api/v2/authors/michael')
+#    author.parsed_response
+#    sleep(1)
+#      puts author['quotes'].first['quoteText']
+#   end
 
    def self.random
-    attributes= retrieve_response.parsed_response
-    QuoteGarden::Quote.new(attributes[''])
+    attributes = retrieve_response.parsed_response
+    #binding.pry
+    QuoteGarden::Quote.new(attributes['quote'])
+
    end
 
     

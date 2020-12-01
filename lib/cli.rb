@@ -4,14 +4,15 @@ class QuoteGarden::CLI
     
     def run
         greeting
-        # QuoteGarden::Quote.random_quote
-        # QuoteGarden::Quote.show_quotes
+        QuoteGarden::Quote.random_quote
+        QuoteGarden::Quote.show_ramdom_quote
+        QuoteGarden::Quote.show_all_quotes
         #QuoteGarden::Apicalls.genres  #to do call the genres method in the cli
-        p "do you prefer to search quotes by keyword:"
+        #p "do you prefer to search quotes by keyword:"
         # @input=nil 
         # @input = gets.chomp.downcase
-      puts  QuoteGarden::Apicalls.search_by_word
-    #    puts QuoteGarden::Quote.all.count
+      #puts  QuoteGarden::Apicalls.search_by_word
+      puts QuoteGarden::Quote.all.count
     
         sleep(2)
         exit
