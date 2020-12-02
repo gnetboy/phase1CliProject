@@ -7,28 +7,29 @@ class QuoteGarden::Apicalls
     HTTParty.get('https://quote-garden.herokuapp.com/api/v2/quotes/random')
   end
 
-#   def self.search_by_word
-#    author = HTTParty.get('https://quote-garden.herokuapp.com/api/v2/authors/michael')
-#    author.parsed_response
-#    sleep(1)
-#      puts author['quotes'].first['quoteText']
-#   end
+  def self.search_by_author(input)
+   author = HTTParty.get("https://quote-garden.herokuapp.com/api/v2/authors/#{input}?").parsed_response
+   #author.parsed_response
+       author['quotes'].each {|q| puts q['quoteText'] }.sample
+         
+        # binding.pry
+  end
 
-   def self.random
-    attributes = retrieve_response.parsed_response
-    #binding.pry
-    QuoteGarden::Quote.new(attributes['quote'])
+   # def self.random
+   #  attributes = retrieve_response.parsed_response
+   #  #binding.pry
+   #  QuoteGarden::Quote.new(attributes['quote'])
 
-   end
+   # end
 
     
-   def self.genres
-    response = HTTParty.get('https://quote-garden.herokuapp.com/api/v2/genres')
-    genres = response.parsed_response
-     genres["genres"].each_with_index do |elem, i|
-        puts "#{i+1}. #{elem}".colorize(:green)
-     end 
-   end  
+   # def self.genres
+   #  response = HTTParty.get('https://quote-garden.herokuapp.com/api/v2/genres')
+   #  genres = response.parsed_response
+   #   genres["genres"].each_with_index do |elem, i|
+   #      puts "#{i+1}. #{elem}".colorize(:green)
+   #   end 
+   # end  
 
 
 end

@@ -12,11 +12,11 @@ class QuoteGarden::Quote
         self.class.all << self
     end
 
-    def self.random_quote
-        QuoteGarden::Apicalls.random
-        QuoteGarden::Apicalls.random
-        QuoteGarden::Apicalls.random
-    end
+    # def self.random_quote
+    #     QuoteGarden::Apicalls.random
+    #     QuoteGarden::Apicalls.random
+    #     QuoteGarden::Apicalls.random
+    # end
 
     def self.show_ramdom_quote
         q=QuoteGarden::Quote.all.first
@@ -34,10 +34,16 @@ class QuoteGarden::Quote
     end
     
     def self.show_all_quotes
-        QuoteGarden::Quote.all.each {|quote|
-        puts quote.quoteText
-        puts quote.quoteAuthor
-        puts quote.quoteGenre}
+        QuoteGarden::Quote.all.each {|q|
+            puts "*"*(80)
+            puts q.quoteText.colorize(:green).wrap_to_limit(80)
+            puts q.quoteAuthor.colorize(:blue)
+            puts q.quoteGenre.colorize(:blue)
+            puts "*"*(80)
+            # puts quote.quoteText
+        # puts quote.quoteAuthor
+        # puts quote.quoteGenre
+    }
     
     end 
 end
