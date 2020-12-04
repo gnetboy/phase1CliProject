@@ -1,26 +1,23 @@
 class QuoteGarden::Apicalls
    
     include HTTParty 
-       BASE = 'https://quote-garden.herokuapp.com/api/v2/'
+      
+    base_uri ='https://quote-garden.herokuapp.com/api/v2/'
 
-  def self.retrieve_response
-    HTTParty.get('https://quote-garden.herokuapp.com/api/v2/quotes/random')
-  end
+   
 
-  def self.search_by_author(input)
-   author = HTTParty.get("https://quote-garden.herokuapp.com/api/v2/authors/#{input}?").parsed_response
-   #author.parsed_response
-       author['quotes'].each {|q| puts q['quoteText'] }.sample
-         
-        # binding.pry
-  end
+      def self.random_quote
+          attributes = HTTParty.get("https://quote-garden.herokuapp.com/api/v2/quotes/random").parsed_response
+          QuoteGarden::Quote.new(attributes['quote'])
+      end
 
-   # def self.random
-   #  attributes = retrieve_response.parsed_response
-   #  #binding.pry
-   #  QuoteGarden::Quote.new(attributes['quote'])
-
-   # end
+      
+      def self.search_by_author(input)
+         authors = HTTParty.get("https://quote-garden.herokuapp.com/api/v2/authors/#{input}?page=1&limit=1").parsed_response
+         QuoteGarden::Quote.new(authors['quotes'].first)
+      end
+   
+end
 
     
    # def self.genres
@@ -32,4 +29,4 @@ class QuoteGarden::Apicalls
    # end  
 
 
-end
+#end

@@ -12,38 +12,42 @@ class QuoteGarden::Quote
         self.class.all << self
     end
 
-    # def self.random_quote
-    #     QuoteGarden::Apicalls.random
-    #     QuoteGarden::Apicalls.random
-    #     QuoteGarden::Apicalls.random
-    # end
-
-    def self.show_ramdom_quote
-        q=QuoteGarden::Quote.all.first
-        #binding.pry
-        
-        puts "*"*(80)
-        puts q.quoteText.colorize(:green).wrap_to_limit(80)
-        puts q.quoteAuthor.colorize(:blue)
-        puts q.quoteGenre.colorize(:blue)
-        puts "*"*(80)
+    def self.all
+        @@all
     end
 
-    def self.all
-       @@all
+    def self.random_quote
+         QuoteGarden::Apicalls.random_quote
     end
     
+    def self.search_by_author(input)
+        QuoteGarden::Apicalls.search_by_author(input)
+    end
+    # def self.show_random_quote
+    #     q=QuoteGarden::Quote.all.first
+    #     #binding.pry
+        
+    #     puts "*"*(80)
+    #     puts q.quoteText.colorize(:green).wrap_to_limit(80)
+    #     puts q.quoteAuthor.colorize(:blue)
+    #     puts q.quoteGenre.colorize(:blue)
+    #     puts "*"*(80)
+    # end
+
+    
     def self.show_all_quotes
+        
         QuoteGarden::Quote.all.each {|q|
             puts "*"*(80)
             puts q.quoteText.colorize(:green).wrap_to_limit(80)
             puts q.quoteAuthor.colorize(:blue)
+         if q.quoteGenre == nil
+            puts "Uncategorized".colorize(:red)
+         else
             puts q.quoteGenre.colorize(:blue)
+         end
             puts "*"*(80)
-            # puts quote.quoteText
-        # puts quote.quoteAuthor
-        # puts quote.quoteGenre
-    }
-    
+        }
     end 
+
 end
