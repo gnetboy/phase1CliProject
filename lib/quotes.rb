@@ -1,5 +1,5 @@
 class QuoteGarden::Quote
-
+        
 
     @@all = []
     
@@ -23,17 +23,36 @@ class QuoteGarden::Quote
     def self.search_by_author(input)
         QuoteGarden::Apicalls.search_by_author(input)
     end
-    # def self.show_random_quote
-    #     q=QuoteGarden::Quote.all.first
-    #     #binding.pry
+   
+    def self.show_random_quote
+        q=QuoteGarden::Quote.all.first
+        #binding.pry
         
-    #     puts "*"*(80)
-    #     puts q.quoteText.colorize(:green).wrap_to_limit(80)
-    #     puts q.quoteAuthor.colorize(:blue)
-    #     puts q.quoteGenre.colorize(:blue)
-    #     puts "*"*(80)
-    # end
+        puts "*"*(80)
+        puts q.quoteText.colorize(:green).wrap_to_limit(80)
+        puts q.quoteAuthor.colorize(:blue)
+        puts q.quoteGenre.colorize(:blue)
+        puts "*"*(80)
+    end
+     
+    def quoteGenre
+        if self.quoteGenre == nil
+            begin
+                raise CustomError
+            rescue CustomError => error
+                puts error.message
+            end
+        else
+            self.quoteGenre
+        end
+    end
+    #adding a custom error for Quote.quoteGenre
+    class CustomError < StandardError
+        def message
+            "Hello from custom error!"
+        end
 
+    end
     
     def self.show_all_quotes
         
@@ -42,7 +61,7 @@ class QuoteGarden::Quote
             puts q.quoteText.colorize(:green).wrap_to_limit(80)
             puts q.quoteAuthor.colorize(:blue)
          if q.quoteGenre == nil
-            puts "Uncategorized".colorize(:red)
+           puts "Uncategorized".colorize(:red)
          else
             puts q.quoteGenre.colorize(:blue)
          end

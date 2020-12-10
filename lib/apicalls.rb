@@ -13,8 +13,8 @@ class QuoteGarden::Apicalls
 
       
       def self.search_by_author(input)
-         authors = HTTParty.get("https://quote-garden.herokuapp.com/api/v2/authors/#{input}?page=1&limit=1").parsed_response
-         QuoteGarden::Quote.new(authors['quotes'].first)
+         authors = HTTParty.get("https://quote-garden.herokuapp.com/api/v2/authors/#{input}?page=1&limit=5").parsed_response
+         QuoteGarden::Quote.new(authors['quotes'].sample)
       end
    
 end

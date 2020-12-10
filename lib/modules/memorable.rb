@@ -1,7 +1,7 @@
 module  QuoteGarden::Memorable
 
    module Instance
-      
+      system 'clear'
       def greeting
          arter=Artii::Base.new
          puts arter.asciify('Welcome to Quote Garden').colorize(:green)
