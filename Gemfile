@@ -9,3 +9,4 @@ gem "pry"
 gem "colorize"
 gem 'artii'
 gem 'wrapify'
+gem "tty-prompt"

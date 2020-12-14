@@ -1,8 +1,5 @@
 class QuoteGarden::Quote
-        
-
     @@all = []
-    
     def initialize(attributes) #dynamically setting getters and setters
 
         attributes.each do |key, value| 
@@ -17,21 +14,24 @@ class QuoteGarden::Quote
     end
 
     def self.random_quote
-         QuoteGarden::Apicalls.random_quote
+        QuoteGarden::Apicalls.random_quote
     end
     
     def self.search_by_author(input)
         QuoteGarden::Apicalls.search_by_author(input)
     end
-   
-    def self.show_random_quote
-        q=QuoteGarden::Quote.all.first
-        #binding.pry
-        
+    
+    
+    def self.show_last_quote
+        q=QuoteGarden::Quote.all[-1]
         puts "*"*(80)
         puts q.quoteText.colorize(:green).wrap_to_limit(80)
         puts q.quoteAuthor.colorize(:blue)
-        puts q.quoteGenre.colorize(:blue)
+        if q.quoteGenre == nil
+            puts "Uncategorized".colorize(:red)
+        else
+            puts q.quoteGenre.colorize(:blue)
+        end
         puts "*"*(80)
     end
      
