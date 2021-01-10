@@ -1,5 +1,12 @@
+# Garden Quote Cli
 Welcome to my cli project for phase 1 
 at Flatiron School.
+## Objectives
+  
+  -Make a cli app using ruby 
+  -utilize an API
+  -utilize object oriented programming
+
 
 I  am using the quoteGarden API from
 https://github.com/pprathameshmore/QuoteGarden

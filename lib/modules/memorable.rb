@@ -23,7 +23,6 @@ module  QuoteGarden::Memorable
       end
       
       def goodbye
-         
          puts @arter.asciify('Goodbye').colorize(:green)
          puts "\n\nThank you for checking out my cli app!\n".colorize(:blue)
          system exit

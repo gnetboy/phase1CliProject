@@ -3,8 +3,9 @@ class QuoteGarden::Genre
     @@all = []
      
     def initialize(name)
-         @name =name
-         @@all << self 
+         self.name =name
+
+         self.class.all << self 
     end
     
     def self.all
@@ -12,7 +13,7 @@ class QuoteGarden::Genre
     end
 
     def self.show_genres
-         @@all.each_with_index do |elem, i|
+         self.class.all.each_with_index do |elem, i|
          puts "#{i+1}. #{elem.name}".colorize(:green)
          end
     end

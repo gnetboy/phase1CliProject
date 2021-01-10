@@ -6,11 +6,16 @@ class QuoteGarden::Quote
           self.class.attr_accessor(key)
           self.send(("#{key}="), value)
         end
+        binding.pry
         self.class.all << self
     end
 
     def self.all
         @@all
+    end
+
+    def self.find_quotes_by_author(author_name)
+        self.all.select {|quote| author_name == quote.quoteAuthor}
     end
 
     def self.random_quote
